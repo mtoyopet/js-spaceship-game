@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      text-align: center;
+    }
+  </style>
+</head>
+<body onkeydown="func(event)">
+  <canvas id="canvas" width="440" height="440" style="background-color: black"></canvas>
+  <script>
+    const canvas = document.getElementById("canvas")
+    const ctx = canvas.getContext("2d")
+    const gameObjects = []
+    var player;
+
+    class Position {
+      constructor (posX, posY) {
+        this.x = posX
+        this.y = posY
+      }
+    }
+
+    class Size {
+      constructor (width, height) {
+        this.width = width
+        this.height = height
+      }
+    }
+
+    class GameObject {
+      constructor(src, posX, posY, width=64, height=64){
+        this.image = new Image();
+        this.image.src = src;
+        this.position = new Position(posX, posY);
+        this.size = new Size(width, height);
+
+        gameObjects.push(this)
+      }
+      update(event) {
+        ctx.drawImage(this.image, this.position.x, this.position.y, this.size.width, this.size.height)
+      }
+      setImage(src){
+        this.image.src = src
+      }
+      setPosition(posX, posY){
+        this.position.x = posX
+        this.position.y = posY 
+      }
+    }
+
+    // プレーヤーオブジェクト
+    class Player extends GameObject {
+      constructor(src, posX, posY){
+        super(src, posX, posY, 64, 48)
+      }
+    }
+
+    // 宇宙船オブジェクト
+    class SpaceShip extends GameObject {
+      constructor(src, posX, posY){
+        super(src, posX, posY, 64, 64)
+      }
+    }
+
+    // 爆弾オブジェクト
+    class Bomb extends GameObject {
+      constructor(src, posX, posY, call){
+        super(src, posX, posY, 48, 32)
+        this.status = 0
+        this.life = 3000
+        this.bombLife = 400
+        this.countDown()
+      }
+      countDown() {
+        this.intervalId = setInterval(function(obj) {
+          obj.life -= 33
+          obj.position.x += 10
+        }, 33, this)
+      }
+    }
+    
+    // メインループ
+    function update() {
+      ctx.fillStyle = "black"
+      ctx.fillRect(0, 0, 440, 440)
+
+      // オブジェクトの描画
+      gameObjects.forEach(element => {
+        element.update()
+      });
+    }
+
+    function func(event){
+      var x = event.keyCode;
+
+      // 上方向
+      if(x === 38){
+        player.position.y -= 32
+      }
+      // 下方向
+      if(x === 40){
+        player.position.y += 32
+      }
+      // スペースキーが押されたら爆弾を置く
+      if(x === 32){
+        new Bomb("./assets/fire_blue.png", player.position.x + 20, player.position.y + 15)
+      }
+    }
+
+    var player = new SpaceShip("./assets/spaceShip.png", 30, 200)
+
+    setInterval(() => update(), 200)
+  </script>
+</body>
+</html>
