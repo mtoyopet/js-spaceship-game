@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      text-align: center;
+    }
+
+    #main-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    #game-screen-container {
+      margin-right: 10px;
+    }
+  
+    #point-bar-screen {
+      margin-top: 140px;
+    }
+
+  </style>
+</head>
+<body onkeydown="keyPressed(event)">
+  <div id="main-container">
+    <div id="game-screen-container">
+    <canvas id="game-screen" width="440" height="440" style="background-color: #0C2659">
+    </canvas>
+    <p>点数 <span id="pointCounter">0</span>点</p>  
+    </div>
+    <div id="point-bar-screen">
+      <canvas id="canvas" width="20" height="300" style="background-color: grey">
+      </canvas>
+    </div>
+  </div>
+  <script>
+    const gameScreen = document.getElementById("game-screen")
+    const pointBarScreen = document.getElementById("point-bar-screen")
+    const gameScreenCtx = gameScreen.getContext("2d")
+    // const pointCounterCtx = pointBarScreen.getContext("2d")
+
+    const gameObjects = []
+    const firedBombsImages = ['./assets/bakuhatsu0.png', './assets/bakuhatsu1.png', './assets/bakuhatsu2.png']
+
+    let point = 0
+    let pointCounter = document.getElementById("pointCounter")
+
+    var firedBombs = []
+    var player;
+
+    class GameObject {
+      constructor(src, posX, posY, width=64, height=64){
+        this.image = new Image();
+        this.image.src = src;
+        this.position = new Position(posX, posY);
+        this.size = new Size(width, height);
+
+        gameObjects.push(this)
+      }
+      update(event) {
+        gameScreenCtx.drawImage(this.image, this.position.x, this.position.y, this.size.width, this.size.height)
+      }
+      setImage(src) {
+        this.image.src = src
+      }
+      setPosition(posX, posY) {
+        this.position.x = posX
+        this.position.y = posY 
+      }
+    }
+
+    class Position {
+      constructor (posX, posY) {
+        this.x = posX
+        this.y = posY
+      }
+    }
+
+    class Size {
+      constructor (width, height) {
+        this.width = width
+        this.height = height
+      }
+    }
+
+    // プレーヤーオブジェクト
+    class Player extends GameObject {
+      constructor(src, posX, posY){
+        super(src, posX, posY, 64, 48)
+      }
+    }
+
+    // 宇宙船オブジェクト
+    class SpaceShip extends GameObject {
+      constructor(src, posX, posY){
+        super(src, posX, posY, 64, 64)
+      }
+    }
+
+    // 敵オブジェクト
+    class Enemy extends GameObject {
+      constructor(src, posX, posY){
+        super(src, posX, posY, 64, 64)
+        this.hit = false
+        this.dead = false
+        this.moveSpeed = 3 + (Math.random() * 15); 
+      setInterval(() => 
+        { 
+          if (!this.hit) {
+            this.position.x -= this.moveSpeed
+            let topDownMoveNum =  Math.floor(Math.random() * 10);
+            if ( topDownMoveNum % 2 ) {
+              if (this.position.y >= 380) return this.position.y = 380
+              this.position.y -= topDownMoveNum
+            } else {
+              if (this.position.y <= 0) return this.position.y = 0
+              this.position.y += topDownMoveNum
+            }
+          }
+
+          firedBombs.forEach(element => {
+            let distX = element.position.x - this.position.x 
+            let distY = element.position.y - this.position.y
+
+            if ((distX < 28 && distX > -28) && (distY < 28 && distY > -28) && (!this.hit) && (!this.dead)) {
+              let indexOfBomb = firedBombs.indexOf(element)
+              firedBombs.splice(indexOfBomb, 1)
+
+              element.dead = true
+              point += 1
+              pointCounter.innerHTML = point
+              this.hit = true
+              let count = -1
+              let counter = 0
+              let that = this;
+              change();
+
+              function change() {
+                count++;
+                counter ++;
+                if (count == firedBombsImages.length) count = 0;
+                that.image.src = firedBombsImages[count];
+                setTimeout(change, 80);
+
+                if (counter >= 8)  {
+                  that.dead = true
+                }
+              };
+            }
+          })
+        }, 200
+      )}
+    }
+
+    // 爆弾オブジェクト
+    class Bomb extends GameObject {
+      constructor(src, posX, posY, call){
+        super(src, posX, posY, 64, 48)
+        this.dead = false
+        this.bombLife = 400
+        this.fire()
+      }
+      fire() {
+        this.intervalId = setInterval(function(obj) {
+          obj.position.x += 10
+        }, 33, this)
+      }
+    }
+
+    class Star extends GameObject {
+      constructor(src, posX, posY, call, width, height) {
+        super(src, posX, posY, width, height)
+
+        setInterval(() => {
+          this.position.x -= 1
+        }, 200)
+      }
+    }
+
+
+    // メインループ
+    function update() {
+      gameScreenCtx.fillStyle = "#0C2659"
+      gameScreenCtx.fillRect(0, 0, 440, 440)
+
+      // オブジェクトの描画
+      gameObjects.forEach(element => {
+        if (!element.dead) {
+          element.update()
+        }
+      });
+    }
+
+    function keyPressed(event){
+      var x = event.keyCode;
+
+      // 上方向
+      if (x === 38) {
+        if (player.position.y <= 0) return player.position.y = 0
+        player.position.y -= 20
+      }
+      // 下方向
+      if (x === 40) {
+        if (player.position.y >= 380) return player.position.y = 380
+        player.position.y += 20
+      }
+      // スペースキーが押されたら爆弾を置く
+      if (x === 32) {
+        let bombNum = Math.floor(Math.random() * 100)
+
+        firedBombs.push(new Bomb("./assets/fire_blue.png", player.position.x + 45, player.position.y + 15))
+      }
+    }
+
+    var player = new SpaceShip("./assets/spaceShip.png", 30, 200)
+
+    // setInterval(() => {
+      new Star("./assets/mars.png", 400, 100, 52, 64)
+      new Star("./assets/earth.png", 700, 340, 52, 64)
+    // }, 5000)
+
+    setInterval(() => {
+      new Enemy(`./assets/monster05.png`, 400, Math.random() * 300)      
+    }, 800)
+
+    setInterval(() => update(), 10)
+
+  </script>
+</body>
+</html>
