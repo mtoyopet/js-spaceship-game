@@ -1,4 +1,5 @@
 function startNewGame () {
+  pointText.style.display = "block";
   player = new SpaceShip("./assets/spaceShip.png", 30, 200)
 
   // ランダムに惑星を描画
@@ -17,17 +18,9 @@ function startNewGame () {
 }
 
 function menuText() {
-  gameScreenCtx.font = `30px "${fontName}"`;
-  gameScreenCtx.fillStyle = "orange" 
-  gameScreenCtx.fillText('SPACE SHIP', 80, 100);
-
-  gameScreenCtx.font = `13px "${fontName}"`;
-  gameScreenCtx.fillStyle = "white" 
-  gameScreenCtx.fillText("Press Enter to Start", 95, 320);
-
-  gameScreenCtx.font = `10px "${fontName}"`;
-  gameScreenCtx.fillStyle = "white" 
-  gameScreenCtx.fillText("made by TOYOMOMO", 80, 120);
+  titleText.drawText()
+  toyomomoText.drawText()
+  startGameText.drawText()
 }
 
 function showMenu () {
@@ -38,5 +31,5 @@ function showMenu () {
     if (!gameStart) {
       intervalFunctions[intervalIndex++ % intervalFunctions.length]();
     }
-  }, 1000);
+  }, 500);
 }

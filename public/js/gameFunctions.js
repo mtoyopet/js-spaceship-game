@@ -2,9 +2,16 @@
 function updateScreen() {
   gameScreenCtx.fillStyle = "#0C2659"
   gameScreenCtx.fillRect(0, 0, 440, 440)
+  
+  if (!gameStart) {
+    titleText.drawText()
+    toyomomoText.drawText()
+  }
 
-  // オブジェクトの描画
-  drawGameObjects()
+  if (gameStart) {
+    // オブジェクトの描画
+    drawGameObjects()
+  }
 }
 
 function drawGameObjects() {
