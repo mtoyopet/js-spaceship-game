@@ -44,10 +44,13 @@ function keyPressed(event){
     if (player.position.y >= 380) return player.position.y = 380
     player.position.y += 20
   }
-  // スペースキーが押されたら爆弾を置く
+  // スペースキーが押されたら爆弾を発射する
   if (x === spaceKey) {
-    let bombNum = Math.floor(Math.random() * 100)
-
     firedBombs.push(new Bomb("./assets/fire_blue.png", player.position.x + 45, player.position.y + 15))
   }
+}
+
+function getPoint() {
+  point += 1
+  pointCounter.innerHTML = point
 }
