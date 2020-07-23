@@ -42,16 +42,17 @@
   <script type="text/javascript" src="./js/textObjects.js"></script>
   <script type="text/javascript" src="./js/gameObjects.js"></script>
   <script type="text/javascript" src="./js/gameFunctions.js"></script>
+  <script type="text/javascript" src="./js/explosionClass.js"></script>
   <script>
     const fontName = 'Press Start 2P';
     const gameScreen = document.getElementById("game-screen")
     const pointBarScreen = document.getElementById("point-bar-screen")
     const gameScreenCtx = gameScreen.getContext("2d")
     const gameObjects = []
-    const shootBombsImages = ['./assets/bakuhatsu0.png', './assets/bakuhatsu1.png', './assets/bakuhatsu2.png']
+    const explosionImages = ['./assets/bakuhatsu0.png', './assets/bakuhatsu1.png', './assets/bakuhatsu2.png']
     const planets = ['./assets/neptune.png', './assets/saturn.png', './assets/mercury.png', './assets/venus.png', './assets/earth.png', './assets/mars.png']
-    const titleText = new textObject(30, "orange", "SPACE SHIP", 80, 100)
-    const toyomomoText =  new textObject(10, "white", "made by TOYOMOMO", 80, 120)
+    const titleText = new textObject(30, "orange", "SPACE SHIP", 75, 100)
+    const toyomomoText =  new textObject(10, "white", "built by TOYOMOMO", 75, 120)
     const startGameText = new textObject(13, "white", "Press Space Key to Start", 70, 320)
     const spaceKey = 32
     const upKey = 38
