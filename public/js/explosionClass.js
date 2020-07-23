@@ -6,7 +6,7 @@ class Explosion extends GameObject {
     this.counter = 0
   }
 
-  explode() {
+  explode(callback) {
     let explosion = this
     changeExplosionImage();
 
@@ -20,6 +20,10 @@ class Explosion extends GameObject {
 
       if (explosion.counter >= 8)  {
         explosion.dead = true
+
+        if (callback !== undefined) {
+          callback()
+        }    
       }
     };
   }

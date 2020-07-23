@@ -1,7 +1,6 @@
 function startNewGame () {
   pointText.style.display = "block";
   player = new SpaceShip("./assets/spaceShip.png", 30, 200)
-
   // 敵の描画
   setInterval(() => {
     enemies.push(new Enemy(`./assets/monster05.png`, 400, Math.random() * 300))      

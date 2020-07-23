@@ -59,3 +59,7 @@ function getPoint() {
   point += 1
   pointCounter.innerHTML = point
 }
+
+function endGame() {
+  gameOver = true
+}
