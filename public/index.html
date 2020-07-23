@@ -50,16 +50,21 @@
     const gameObjects = []
     const firedBombsImages = ['./assets/bakuhatsu0.png', './assets/bakuhatsu1.png', './assets/bakuhatsu2.png']
     const planets = ['./assets/neptune.png', './assets/saturn.png', './assets/mercury.png', './assets/venus.png', './assets/earth.png', './assets/mars.png']
+    const titleText = new textObject(30, "orange", "SPACE SHIP", 80, 100)
+    const toyomomoText =  new textObject(10, "white", "made by TOYOMOMO", 80, 120)
+    const startGameText = new textObject(13, "white", "Press Space Key to Start", 70, 320)
+    const spaceKey = 32
+    const upKey = 38
+    const downKey = 40
+
     let gameStart = false
     let point = 0
     let pointText = document.getElementById("pointText")
     let pointCounter = document.getElementById("pointCounter")
     let firedBombs = []
     let player;
-    const titleText = new textObject(30, "orange", "SPACE SHIP", 80, 100)
-    const toyomomoText =  new textObject(10, "white", "made by TOYOMOMO", 80, 120)
-    const startGameText = new textObject(13, "white", "Press Enter to Start", 95, 320)
 
+    // googleフォントを読み込み次第スタートメニューを表示
     WebFont.load({
       google: {families: [fontName]},
       active: showMenu

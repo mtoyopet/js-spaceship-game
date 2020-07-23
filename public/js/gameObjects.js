@@ -108,9 +108,9 @@ class Bomb extends GameObject {
     super(src, posX, posY, 64, 48)
     this.dead = false
     this.bombLife = 400
-    this.fire()
+    this.shoot()
   }
-  fire() {
+  shoot() {
     this.intervalId = setInterval(function(obj) {
       obj.position.x += 10
     }, 33, this)
