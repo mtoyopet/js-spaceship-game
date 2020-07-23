@@ -6,8 +6,7 @@ class Explosion extends GameObject {
     this.counter = 0
   }
 
-  explode(index) {
-    shotBombs.splice(index, 1)
+  explode() {
     let explosion = this
     changeExplosionImage();
 
