@@ -74,15 +74,15 @@ class Enemy extends GameObject {
   }
 
   explode() {
-    shootBombs.forEach(element => {
-      let distX = element.position.x - this.position.x 
-      let distY = element.position.y - this.position.y
+    shootBombs.forEach(object => {
+      let distX = object.position.x - this.position.x 
+      let distY = object.position.y - this.position.y
 
       if ((distX < 28 && distX > -28) && (distY < 28 && distY > -28) && (!this.hit) && (!this.dead)) {
-        let indexOfBomb = shootBombs.indexOf(element)
+        let indexOfBomb = shootBombs.indexOf(object)
         shootBombs.splice(indexOfBomb, 1)
 
-        element.dead = true
+        object.dead = true
         this.hit = true
         getPoint();
         let count = -1
@@ -104,6 +104,19 @@ class Enemy extends GameObject {
       }
     })    
   }
+
+  bombElement(element, count, counter) {
+    count++;
+    counter ++;
+    if (count == shootBombsImages.length) count = 0;
+    element.image.src = shootBombsImages[count];
+    setTimeout(this.bombElement(element, count, counter), 80);
+
+    if (counter >= 8)  {
+      element.dead = true
+    }
+  };
+
 }
 
 // 爆弾オブジェクト
