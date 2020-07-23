@@ -10,13 +10,6 @@ class GameObject {
   update(event) {
     gameScreenCtx.drawImage(this.image, this.position.x, this.position.y, this.size.width, this.size.height)
   }
-  setImage(src) {
-    this.image.src = src
-  }
-  setPosition(posX, posY) {
-    this.position.x = posX
-    this.position.y = posY 
-  }
 }
 
 class Position {
