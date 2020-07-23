@@ -28,7 +28,7 @@ function showMenu() {
   let intervalIndex = 0;
   
   setInterval(() => {
-    if (!gameStart) {
+    if (!gameStart && !gameOver) {
       intervalFunctions[intervalIndex++ % intervalFunctions.length]();
     }
   }, 500);

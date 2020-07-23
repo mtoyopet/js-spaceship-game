@@ -7,16 +7,17 @@ class Explosion extends GameObject {
   }
 
   explode(index) {
-    shootBombs.splice(index, 1)
+    shotBombs.splice(index, 1)
     let explosion = this
-    bombObject();
+    changeExplosionImage();
 
-    function bombObject() {
+    function changeExplosionImage() {
+      // 爆発画像を順に表示させる
       explosion.count++;
-      explosion.counter ++;
+      explosion.counter ++;      
       if (explosion.count == explosionImages.length) { explosion.count = 0; }
       explosion.image.src = explosionImages[explosion.count];
-      setTimeout(bombObject, 80);
+      setTimeout(changeExplosionImage, 80);
 
       if (explosion.counter >= 8)  {
         explosion.dead = true

@@ -3,14 +3,19 @@ function updateScreen() {
   gameScreenCtx.fillStyle = "#0C2659"
   gameScreenCtx.fillRect(0, 0, 440, 440)
   
-  if (!gameStart) {
+  if (!gameStart && !gameOver) {
     titleText.drawText()
     toyomomoText.drawText()
   }
 
-  if (gameStart) {
+  if (gameStart && !gameOver) {
     // オブジェクトの描画
     drawGameObjects()
+  }
+
+  // ゲームオーバー画面
+  if (gameStart && gameOver) {
+    gameOverText.drawText()
   }
 }
 
@@ -26,10 +31,10 @@ function keyPressed(event){
   var x = event.keyCode;
 
   // ゲームが始まっていない状態でスペースキー以外が押された場合
-  if (!gameStart && x !== spaceKey) { return }
+  if (!gameStart && !gameOver && x !== spaceKey) { return }
 
   // ゲームが始まっていない状態でスペースキーが押された場合
-  if (!gameStart && x === spaceKey) {
+  if (!gameStart && !gameOver && x === spaceKey) {
     gameStart = true
     return startNewGame()
   }
@@ -46,7 +51,7 @@ function keyPressed(event){
   }
   // スペースキーが押されたら爆弾を発射する
   if (x === spaceKey) {
-    shootBombs.push(new Bomb("./assets/fire_blue.png", player.position.x + 45, player.position.y + 15))
+    shotBombs.push(new Bomb("./assets/fire_blue.png", player.position.x + 45, player.position.y + 15))
   }
 }
 

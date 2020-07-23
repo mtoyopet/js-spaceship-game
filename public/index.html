@@ -54,15 +54,18 @@
     const titleText = new textObject(30, "orange", "SPACE SHIP", 75, 100)
     const toyomomoText =  new textObject(10, "white", "built by TOYOMOMO", 75, 120)
     const startGameText = new textObject(13, "white", "Press Space Key to Start", 70, 320)
+    const gameOverText = new textObject(30, "white", "GAME OVER...", 75, 100)
     const spaceKey = 32
     const upKey = 38
     const downKey = 40
 
     let gameStart = false
+    let gameOver = false
     let point = 0
     let pointText = document.getElementById("pointText")
     let pointCounter = document.getElementById("pointCounter")
-    let shootBombs = []
+    let shotBombs = []
+    let enemies = []
     let player;
 
     // googleフォントを読み込み次第スタートメニューを表示

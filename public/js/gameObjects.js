@@ -19,20 +19,6 @@ class GameObject {
   }
 }
 
-class Position {
-  constructor (posX, posY) {
-    this.x = posX
-    this.y = posY
-  }
-}
-
-class Size {
-  constructor (width, height) {
-    this.width = width
-    this.height = height
-  }
-}
-
 // プレーヤーオブジェクト
 class Player extends GameObject {
   constructor(src, posX, posY){
@@ -74,7 +60,7 @@ class Enemy extends GameObject {
   }
 
   checkHit(enemy) {
-    shootBombs.forEach(shootBomb => {
+    shotBombs.forEach(shootBomb => {
       let distX = shootBomb.position.x - enemy.position.x 
       let distY = shootBomb.position.y - enemy.position.y
 
@@ -82,7 +68,7 @@ class Enemy extends GameObject {
         enemy.dead = true
         shootBomb.dead = true
         enemy.hit = true
-        let indexOfBomb = shootBombs.indexOf(shootBomb)
+        let indexOfBomb = shotBombs.indexOf(shootBomb)
         new Explosion(enemy.position.x, enemy.position.y).explode(indexOfBomb)
         getPoint();
       }
@@ -115,3 +101,16 @@ class Star extends GameObject {
   }
 }
 
+class Position {
+  constructor (posX, posY) {
+    this.x = posX
+    this.y = posY
+  }
+}
+
+class Size {
+  constructor (width, height) {
+    this.width = width
+    this.height = height
+  }
+}
