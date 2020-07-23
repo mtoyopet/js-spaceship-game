@@ -46,7 +46,7 @@ function keyPressed(event){
   }
   // スペースキーが押されたら爆弾を発射する
   if (x === spaceKey) {
-    firedBombs.push(new Bomb("./assets/fire_blue.png", player.position.x + 45, player.position.y + 15))
+    shootBombs.push(new Bomb("./assets/fire_blue.png", player.position.x + 45, player.position.y + 15))
   }
 }
 

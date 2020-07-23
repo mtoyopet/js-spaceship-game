@@ -48,7 +48,7 @@
     const pointBarScreen = document.getElementById("point-bar-screen")
     const gameScreenCtx = gameScreen.getContext("2d")
     const gameObjects = []
-    const firedBombsImages = ['./assets/bakuhatsu0.png', './assets/bakuhatsu1.png', './assets/bakuhatsu2.png']
+    const shootBombsImages = ['./assets/bakuhatsu0.png', './assets/bakuhatsu1.png', './assets/bakuhatsu2.png']
     const planets = ['./assets/neptune.png', './assets/saturn.png', './assets/mercury.png', './assets/venus.png', './assets/earth.png', './assets/mars.png']
     const titleText = new textObject(30, "orange", "SPACE SHIP", 80, 100)
     const toyomomoText =  new textObject(10, "white", "made by TOYOMOMO", 80, 120)
@@ -61,7 +61,7 @@
     let point = 0
     let pointText = document.getElementById("pointText")
     let pointCounter = document.getElementById("pointCounter")
-    let firedBombs = []
+    let shootBombs = []
     let player;
 
     // googleフォントを読み込み次第スタートメニューを表示

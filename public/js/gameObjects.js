@@ -74,19 +74,17 @@ class Enemy extends GameObject {
   }
 
   explode() {
-    firedBombs.forEach(element => {
+    shootBombs.forEach(element => {
       let distX = element.position.x - this.position.x 
       let distY = element.position.y - this.position.y
 
       if ((distX < 28 && distX > -28) && (distY < 28 && distY > -28) && (!this.hit) && (!this.dead)) {
-        let indexOfBomb = firedBombs.indexOf(element)
-        firedBombs.splice(indexOfBomb, 1)
+        let indexOfBomb = shootBombs.indexOf(element)
+        shootBombs.splice(indexOfBomb, 1)
 
         element.dead = true
         this.hit = true
         getPoint();
-
-        
         let count = -1
         let counter = 0
         let that = this;
@@ -95,8 +93,8 @@ class Enemy extends GameObject {
         function bombObject() {
           count++;
           counter ++;
-          if (count == firedBombsImages.length) count = 0;
-          that.image.src = firedBombsImages[count];
+          if (count == shootBombsImages.length) count = 0;
+          that.image.src = shootBombsImages[count];
           setTimeout(bombObject, 80);
 
           if (counter >= 8)  {
