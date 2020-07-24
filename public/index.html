@@ -3,23 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@momokotoyopet" />
-  <meta name="twitter:creator" content="@momokotoyopet" />
-  <meta property="og:url" content="https://space-ship-covid-19.web.app/" />
-  <meta property="og:title" content="SPACE SHIP" />
-  <meta property="og:description" content="懐かしのレトロシューティングゲーム！SPACE SHIPで遊ぼう！！！" />
-  <meta property="og:image" content="https://serverless-202007.s3-ap-southeast-1.amazonaws.com/Red+Simple+Sale+Twitter+Post.png" />
-  <title>Document</title>
+  <meta name=“twitter:card” content=“summary_large_image” />
+  <meta name=“twitter:site” content=“@momokotoyopet” />
+  <meta name=“twitter:creator” content=“@momokotoyopet” />
+  <meta property=“og:url” content=“https://space-ship-covid-19.web.app/” />
+  <meta property=“og:title” content=“SPACE SHIP” />
+  <meta property=“og:description” content=“懐かしのレトロシューティングゲーム！SPACE SHIPで遊ぼう！！！” />
+  <meta property=“og:image” content=“https://serverless-202007.s3-ap-southeast-1.amazonaws.com/Red+Simple+Sale+Twitter+Post.png” />  <title>Document</title>
   <style>
-    #main-container > div {
+    #main-container {
       justify-content: center;
       text-align: center;
+      display: flex;
+      margin-right: 10px;
+      font-family: 'Press Start 2P', cursive;
     }
 
-    #game-screen-container {
+    #canvas-container {
       display: flex;
-      font-family: 'Press Start 2P', cursive;
+      flex-direction: column;
     }
   
     #point-bar-screen {
@@ -53,42 +55,33 @@
       margin-top: 20px;
     }
 
-    #author-container {
-      width: 300px;
-    }
-
-    #author-container > div {
-      text-align: start;
-      font-size: 10px;
-    }
-
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 </head>
 <body onkeydown="keyPressed(event)">  
   <div id="main-container">
-    <div id="game-screen-container">
+    <div id="canvas-container">
       <canvas id="game-screen" width="440" height="440" style="background-color: #0C2659">
       </canvas>
-      <p id="pointText" style="display: none;"><span id="pointCounter">0</span> POINT</p>  
-      <div id="tutorial-screen-container">
-        <p id="how-to">HOW TO PLAY</p>
-        <image src="./assets/spaceShip.png" width="100px"></image>
-        <p class="tutorial-text">MOVE UP: ↑ Key</p>
-        <p class="tutorial-text">MOVE DOWN: ↓ Key</p>
-        <div id="fire">
-          <image src="./assets/fire_blue.png" width="50px"></image>
-          <p class="tutorial-text">SHOOT: Space Key</p>
+      <p id="pointText" style="display: none;"><span id="pointCounter">0</span> POINT</p>
+    </div>
+    <div id="tutorial-screen-container">
+      <p id="how-to">HOW TO PLAY</p>
+      <image src="./assets/spaceShip.png" width="100px"></image>
+      <p class="tutorial-text">MOVE UP: ↑ Key</p>
+      <p class="tutorial-text">MOVE DOWN: ↓ Key</p>
+      <div id="fire">
+        <image src="./assets/fire_blue.png" width="50px"></image>
+        <p class="tutorial-text">SHOOT: Space Key</p>
+      </div>
+      <div id="monsters">
+        <div id="normal">
+          <image src="./assets/monster_normal.png" width="60px"></image>
+          <p class="tutorial-text">1 POINT</p>
         </div>
-        <div id="monsters">
-          <div id="normal">
-            <image src="./assets/monster_normal.png" width="60px"></image>
-            <p class="tutorial-text">1 POINT</p>
-          </div>
-          <div id="special">
-            <image src="./assets/monster_special.png" width="60px"></image>
-          <p class="tutorial-text">3 POINT</p>
-          </div>
+        <div id="special">
+          <image src="./assets/monster_special.png" width="60px"></image>
+        <p class="tutorial-text">3 POINT</p>
         </div>
       </div>
     </div>
@@ -110,7 +103,7 @@
     const explosionImages = ['./assets/bakuhatsu0.png', './assets/bakuhatsu1.png', './assets/bakuhatsu2.png']
     const planets = ['./assets/neptune.png', './assets/saturn.png', './assets/mercury.png', './assets/venus.png', './assets/earth.png', './assets/mars.png']
     const titleText = new textObject(30, "orange", "SPACE SHIP", 75, 100)
-    const toyomomoText =  new textObject(10, "white", "created by TOYOMOMO", 75, 120)
+    const toyomomoText =  new textObject(10, "white", "built by TOYOMOMO", 75, 120)
     const startGameText = new textObject(13, "white", "Press Space Key to Start", 70, 320)
     const gameOverText = new textObject(30, "white", "GAME OVER...", 50, 220)
     const playAgainText = new textObject(10, "white", "Play Again? Reload the Page!", 80, 280)
