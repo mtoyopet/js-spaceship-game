@@ -55,8 +55,8 @@ function keyPressed(event){
   }
 }
 
-function getPoint() {
-  point += 1
+function incrementPoint(num) {
+  point += num
   pointCounter.innerHTML = point
 }
 

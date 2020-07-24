@@ -15,7 +15,7 @@ class SpaceShip extends GameObject {
       let distY = enemy.position.y - this.position.y
 
       if ((distX < 28 && distX > -28) && (distY < 28 && distY > -28) && (!this.dead)) {
-        this.dead = true   
+        this.dead = true
         new Explosion(this.position.x, this.position.y).explode(() => {
           gameOver = true     
         })

@@ -2,6 +2,7 @@
 class Enemy extends GameObject {
   constructor(src, posX, posY){
     super(src, posX, posY, 64, 64)
+    this.point = src === "./assets/monster_normal.png" ? 1 : 3
     this.hit = false
     this.dead = false
     this.moveSpeed = 3 + (Math.random() * 15); 
@@ -34,7 +35,8 @@ class Enemy extends GameObject {
         this.kill()
         shootBomb.kill(shootBomb)
         new Explosion(this.position.x, this.position.y).explode()
-        getPoint();
+
+        incrementPoint(this.point);
       }
     })
   }

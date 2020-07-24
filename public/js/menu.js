@@ -1,11 +1,17 @@
 function startNewGame () {
   pointText.style.display = "block";
   player = new SpaceShip("./assets/spaceShip.png", 30, 200)
-  // 敵の描画
+
+  // ノーマル敵の描画
   setInterval(() => {
-    enemies.push(new Enemy(`./assets/monster05.png`, 400, Math.random() * 300))      
+    enemies.push(new Enemy("./assets/monster_normal.png", 400, Math.random() * 300))      
   }, 1000)
 
+  // スペシャル敵の描画
+  setInterval(() => {
+    enemies.push(new Enemy("./assets/monster_special.png", 400, Math.random() * 300))      
+  }, 10000)
+  
   // ランダムに惑星を描画
   setInterval(() => {
     let index = Math.floor(Math.random() * 5)
