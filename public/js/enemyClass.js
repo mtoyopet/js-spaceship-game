@@ -5,7 +5,7 @@ class Enemy extends GameObject {
     this.point = src === "./assets/monster_normal.png" ? 1 : 3
     this.hit = false
     this.dead = false
-    this.moveSpeed = 3 + (Math.random() * 15); 
+    this.moveSpeed = 8 + (Math.random() * 15); 
   
     setInterval(() => { 
       if (!this.hit) { this.move() }
@@ -31,7 +31,7 @@ class Enemy extends GameObject {
       let distX = shootBomb.position.x - this.position.x 
       let distY = shootBomb.position.y - this.position.y
 
-      if ((distX < 28 && distX > -28) && (distY < 28 && distY > -28) && (!this.hit) && (!this.dead)) {
+      if ((distX < 35 && distX > -35) && (distY < 35 && distY > -35) && (!this.hit) && (!this.dead)) {
         this.kill()
         shootBomb.kill(shootBomb)
         pointUp(this.point, this.position.x, this.position.y)
