@@ -17,6 +17,8 @@ function updateScreen() {
   // ゲームオーバー画面
   if (gameStart && gameOver) {
     gameOverText.drawText()
+    playAgainText.drawText()
+    restartText.drawText()
   }
 }
 
@@ -48,6 +50,13 @@ function keyPressed(event){
     gameStart = true
     return startNewGame()
   }
+
+  // // ゲームオーバー画面でスペースキーが押された場合
+  // if (gameStart && gameOver && x === spaceKey) {
+  //   gameStart = true
+  //   gameOver = false
+  //   return startNewGame()
+  // }
 
   // 上方向
   if (x === upKey) {
