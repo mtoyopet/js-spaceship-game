@@ -39,7 +39,7 @@
     </div>
   </div>
   <script type="text/javascript" src="./js/menu.js"></script>
-  <script type="text/javascript" src="./js/textObjects.js"></script>
+  <script type="text/javascript" src="./js/textObjectClass.js"></script>
   <script type="text/javascript" src="./js/gameObjectClass.js"></script>
   <script type="text/javascript" src="./js/spaceShipClass.js"></script>
   <script type="text/javascript" src="./js/enemyClass.js"></script>
@@ -53,6 +53,7 @@
     const pointBarScreen = document.getElementById("point-bar-screen")
     const gameScreenCtx = gameScreen.getContext("2d")
     const gameObjects = []
+    const pointTextObjects = []
     const explosionImages = ['./assets/bakuhatsu0.png', './assets/bakuhatsu1.png', './assets/bakuhatsu2.png']
     const planets = ['./assets/neptune.png', './assets/saturn.png', './assets/mercury.png', './assets/venus.png', './assets/earth.png', './assets/mars.png']
     const titleText = new textObject(30, "orange", "SPACE SHIP", 75, 100)

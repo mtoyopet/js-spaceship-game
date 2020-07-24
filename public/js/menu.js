@@ -10,12 +10,12 @@ function startNewGame () {
   // スペシャル敵の描画
   setInterval(() => {
     enemies.push(new Enemy("./assets/monster_special.png", 400, Math.random() * 300))      
-  }, 10000)
+  }, 15000)
   
   // ランダムに惑星を描画
   setInterval(() => {
     let index = Math.floor(Math.random() * 5)
-    new Planet(planets[index], 500, Math.random() * 450, 52, 64)
+    new Planet(planets[index], 500, Math.random() * 450, 80, 80)
   }, 50000)
   
   // 画面をアップデート
@@ -32,6 +32,7 @@ function showMenu() {
   let intervalFunctions = [menuText, updateScreen];
   let intervalIndex = 0;
   
+  // メニュー画面をぴこぴこさせる
   setInterval(() => {
     if (!gameStart && !gameOver) {
       intervalFunctions[intervalIndex++ % intervalFunctions.length]();

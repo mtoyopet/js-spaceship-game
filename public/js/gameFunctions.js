@@ -11,6 +11,7 @@ function updateScreen() {
   if (gameStart && !gameOver) {
     // オブジェクトの描画
     drawGameObjects()
+    drawPointTextObjects()
   }
 
   // ゲームオーバー画面
@@ -20,11 +21,20 @@ function updateScreen() {
 }
 
 function drawGameObjects() {
-  gameObjects.forEach(element => {
-    if (!element.dead) {
-      element.update()
+  gameObjects.forEach(object => {
+    if (!object.dead) {
+      object.update()
     }
   });
+}
+
+function drawPointTextObjects() {
+  pointTextObjects.forEach(object => {
+    if (object.counter <= 30) {
+      object.showPointText()
+      object.counter++
+    } 
+  })
 }
 
 function keyPressed(event){
@@ -62,4 +72,8 @@ function incrementPoint(num) {
 
 function endGame() {
   gameOver = true
+}
+
+function pointUp(point, posX, posY) {
+  pointTextObjects.push(new textObject(11, "red", `+${point}`, posX + 10, posY))
 }

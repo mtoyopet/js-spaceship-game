@@ -25,15 +25,16 @@ class Enemy extends GameObject {
     }
   }
 
+  // 爆弾に当たったかチェックする
   checkHit() {
     shotBombs.forEach(shootBomb => {
       let distX = shootBomb.position.x - this.position.x 
       let distY = shootBomb.position.y - this.position.y
 
       if ((distX < 28 && distX > -28) && (distY < 28 && distY > -28) && (!this.hit) && (!this.dead)) {
-        
         this.kill()
         shootBomb.kill(shootBomb)
+        pointUp(this.point, this.position.x, this.position.y)
         new Explosion(this.position.x, this.position.y).explode()
 
         incrementPoint(this.point);
