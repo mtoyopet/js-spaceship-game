@@ -23,6 +23,28 @@
       margin-top: 140px;
     }
 
+    #how-to {
+      margin-top: 20px;
+      margin-bottom: 40px;
+    }
+
+    .tutorial-text {
+      font-size: 12px;
+    }
+
+    #monsters {
+      display: flex;
+      margin-top: 20px;
+    }
+
+    #normal {
+      margin-right: 25px;
+    }
+
+    #fire {
+      margin-top: 20px;
+    }
+
   </style>
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 </head>
@@ -33,10 +55,30 @@
       </canvas>
     <p id="pointText" style="display: none;"><span id="pointCounter">0</span> POINT</p>  
     </div>
-    <div id="point-bar-screen">
+    <div id="tutorial-screen-container">
+      <p id="how-to">HOW TO PLAY</p>
+      <image src="./assets/spaceShip.png" width="100px"></image>
+      <p class="tutorial-text">MOVE UP: ↑ Key</p>
+      <p class="tutorial-text">MOVE DOWN: ↓ Key</p>
+      <div id="fire">
+        <image src="./assets/fire_blue.png" width="50px"></image>
+        <p class="tutorial-text">SHOOT: Space Key</p>
+      </div>
+      <div id="monsters">
+        <div id="normal">
+          <image src="./assets/monster_normal.png" width="60px"></image>
+          <p class="tutorial-text">1 POINT</p>
+        </div>
+        <div id="special">
+          <image src="./assets/monster_special.png" width="60px"></image>
+        <p class="tutorial-text">3 POINT</p>
+        </div>
+      </div>
+    </div>
+    <!-- <div id="point-bar-screen">
       <canvas id="canvas" width="20" height="300" style="background-color: grey">
       </canvas>
-    </div>
+    </div> -->
   </div>
   <script type="text/javascript" src="./js/menu.js"></script>
   <script type="text/javascript" src="./js/textObjectClass.js"></script>
@@ -52,8 +94,6 @@
     const gameScreen = document.getElementById("game-screen")
     const pointBarScreen = document.getElementById("point-bar-screen")
     const gameScreenCtx = gameScreen.getContext("2d")
-    const gameObjects = []
-    const pointTextObjects = []
     const explosionImages = ['./assets/bakuhatsu0.png', './assets/bakuhatsu1.png', './assets/bakuhatsu2.png']
     const planets = ['./assets/neptune.png', './assets/saturn.png', './assets/mercury.png', './assets/venus.png', './assets/earth.png', './assets/mars.png']
     const titleText = new textObject(30, "orange", "SPACE SHIP", 75, 100)
@@ -70,6 +110,8 @@
     let point = 0
     let pointText = document.getElementById("pointText")
     let pointCounter = document.getElementById("pointCounter")
+    let gameObjects = []
+    let pointTextObjects = []
     let shotBombs = []
     let enemies = []
     let player;

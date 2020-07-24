@@ -42,12 +42,12 @@ function keyPressed(event){
   var x = event.keyCode;
 
   if (!gameStart && !gameOver && x !== spaceKey) { 
-    // ゲームが始まっていない状態でスペースキー以外が押された場合
+    // ゲームが始まっていない状態でスペースキー以外が押された時
     return
   } else if (!gameStart && !gameOver && x === spaceKey) {
-  // ゲームが始まっていない状態でスペースキーが押された場
-  gameStart = true
-    return startNewGame()
+    // ゲームが始まっていない状態でスペースキーが押された時
+    gameStart = true
+    startNewGame()
   } else {
     // 上方向
     if (x === upKey) {

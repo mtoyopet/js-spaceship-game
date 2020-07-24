@@ -17,7 +17,7 @@ class SpaceShip extends GameObject {
       if ((distX < 28 && distX > -28) && (distY < 28 && distY > -28) && (!this.dead)) {
         this.dead = true
         new Explosion(this.position.x, this.position.y).explode(() => {
-          gameOver = true     
+          endGame()
         })
       }
     })
