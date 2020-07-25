@@ -61,11 +61,13 @@ class Enemy extends GameObject {
   reduceHP () {
     this.stop = true
     this.hp -= 1
-    let icon = new Icon("./assets/ouch.png", this.position.x - 5, this.position.y - 5)
 
-    setTimeout(() => {
-      icon.dead = true
-    }, 300)
+    if (this.hp >= 0) {
+      let icon = new Icon("./assets/ouch.png", this.position.x - 5, this.position.y - 5)
+      setTimeout(() => {
+        icon.dead = true
+      }, 300)
+    }
 
     setTimeout(() => {
       this.stop = false

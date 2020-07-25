@@ -9,6 +9,7 @@ class SpaceShip extends GameObject {
     }, 200)
   }
 
+  // モンスターが当たってないかチェックする
   checkHit () {
     enemies.forEach(enemy => {
       let distX = enemy.position.x - this.position.x 

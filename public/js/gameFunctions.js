@@ -12,6 +12,7 @@ function updateScreen() {
     // オブジェクトの描画
     drawGameObjects()
     drawPointTextObjects()
+    sliceShotBombs()
   }
 
   // ゲームオーバー画面
@@ -38,6 +39,15 @@ function drawPointTextObjects() {
   })
 }
 
+function sliceShotBombs() {
+  shotBombs.forEach(shotBomb => {
+    // console.log(object.position)
+    if (shotBomb.position.x >= 450) {
+      shotBomb.kill()
+    }
+  })
+}
+
 function keyPressed(event){
   var x = event.keyCode;
 
@@ -61,7 +71,9 @@ function keyPressed(event){
     }
     // スペースキーが押されたら爆弾を発射する
     if (x === spaceKey) {
-      shotBombs.push(new Bomb("./assets/fire_blue.png", player.position.x + 45, player.position.y + 15))
+      if (shotBombs.length < 3) {
+        shotBombs.push(new Bomb("./assets/fire_blue.png", player.position.x + 45, player.position.y + 15))
+      }
     }
   }
 }
