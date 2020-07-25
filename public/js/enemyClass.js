@@ -2,7 +2,7 @@
 class Enemy extends GameObject {
   constructor(src, posX, posY, hp){
     super(src, posX, posY, 64, 64)
-    this.point = src === "./assets/monster_normal.png" ? 1 : 3
+    this.point = src === "./assets/monster_normal.png" ? 1 : 5
     this.hit = false
     this.dead = false
     this.stop = false
@@ -63,7 +63,7 @@ class Enemy extends GameObject {
     this.hp -= 1
 
     if (this.hp >= 0) {
-      let icon = new Icon("./assets/ouch.png", this.position.x - 5, this.position.y - 5)
+      let icon = new Icon("./assets/ouch.png", this.position.x - 6, this.position.y - 4)
       setTimeout(() => {
         icon.dead = true
       }, 300)
