@@ -5,12 +5,12 @@ function startNewGame () {
 
   // ノーマル敵の描画
   setInterval(() => {
-    enemies.push(new Enemy("./assets/monster_normal.png", 400, Math.random() * 300))      
+    enemies.push(new Enemy("./assets/monster_normal.png", 400, Math.random() * 300, 0))      
   }, 1000)
 
   // スペシャル敵の描画
   setInterval(() => {
-    enemies.push(new Enemy("./assets/monster_special.png", 400, Math.random() * 300))      
+    enemies.push(new Enemy("./assets/monster_special.png", 400, Math.random() * 300, 2))      
   }, 15000)
   
   // ランダムに惑星を描画
