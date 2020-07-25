@@ -76,5 +76,5 @@ function endGame() {
 }
 
 function pointUp(point, posX, posY) {
-  pointTextObjects.push(new textObject(11, "red", `+${point}`, posX + 10, posY))
+  pointTextObjects.push(new textObject(12, "#F0464A", `+${point}`, posX + 10, posY))
 }
