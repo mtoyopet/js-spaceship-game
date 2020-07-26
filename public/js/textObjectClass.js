@@ -19,5 +19,4 @@ class textObject {
     gameScreenCtx.fillStyle = `${this.color}` 
     gameScreenCtx.fillText(this.text, this.position.x + 20, this.position.y);    
   }
-
 }

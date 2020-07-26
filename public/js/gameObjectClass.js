@@ -4,6 +4,7 @@ class GameObject {
     this.image.src = src;
     this.position = new Position(posX, posY);
     this.size = new Size(width, height);
+    this.dead = false
 
     gameObjects.push(this)
   }

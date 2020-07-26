@@ -36,6 +36,7 @@ function showMenu() {
   // メニュー画面をぴこぴこさせる
   setInterval(() => {
     if (!gameStart && !gameOver) {
+      drawGameObjects()
       intervalFunctions[intervalIndex++ % intervalFunctions.length]();
     }
   }, 500);

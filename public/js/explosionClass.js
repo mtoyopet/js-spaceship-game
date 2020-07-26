@@ -1,7 +1,6 @@
 class Explosion extends GameObject {
   constructor(posX, posY){
     super(explosionImages[0], posX, posY)
-    this.dead = false
     this.count = -1
     this.counter = 0
   }

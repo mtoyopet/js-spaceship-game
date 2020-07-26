@@ -2,7 +2,6 @@
 class SpaceShip extends GameObject {
   constructor(src, posX, posY){
     super(src, posX, posY, 64, 64)
-    this.dead = false
 
     setInterval(() => {
       this.checkHit()

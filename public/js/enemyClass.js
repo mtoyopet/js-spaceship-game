@@ -4,11 +4,9 @@ class Enemy extends GameObject {
     super(src, posX, posY, 64, 64)
     this.point = src === "./assets/monster_normal.png" ? 1 : 5
     this.hit = false
-    this.dead = false
     this.stop = false
     this.moveSpeed = 8 + (Math.random() * 15);
     this.hp = hp
-    this.defaultImage = src
 
     setInterval(() => { 
       if (!this.hit && !this.stop) { this.move() }
@@ -63,7 +61,7 @@ class Enemy extends GameObject {
     this.hp -= 1
 
     if (this.hp >= 0) {
-      let icon = new Icon("./assets/ouch.png", this.position.x - 6, this.position.y - 4)
+      let icon = new Icon("./assets/ouch3.png", this.position.x - 4, this.position.y - 4)
       setTimeout(() => {
         icon.dead = true
       }, 300)

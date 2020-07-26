@@ -15,8 +15,8 @@ function updateScreen() {
     sliceShotBombs()
   }
 
-  // ゲームオーバー画面
   if (gameStart && gameOver) {
+    // ゲームオーバー画面
     gameOverText.drawText()
     playAgainText.drawText()
   }
@@ -41,7 +41,6 @@ function drawPointTextObjects() {
 
 function sliceShotBombs() {
   shotBombs.forEach(shotBomb => {
-    // console.log(object.position)
     if (shotBomb.position.x >= 450) {
       shotBomb.kill()
     }
