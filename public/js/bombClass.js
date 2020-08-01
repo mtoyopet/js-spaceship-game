@@ -11,7 +11,7 @@ class Bomb extends GameObject {
     }, 33, this)
   }
 
-  kill(self) {
+  explode(self) {
     this.dead = true
     shotBombs.splice(shotBombs.indexOf(self), 1)
   }

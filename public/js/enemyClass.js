@@ -1,11 +1,11 @@
 // 敵オブジェクト
 class Enemy extends GameObject {
-  constructor(src, posX, posY, hp){
-    super(src, posX, posY, 64, 64)
+  constructor(src, posX, posY, hp, width=64, height=64, moveSpeed=8){
+    super(src, posX, posY, width, height)
     this.point = src === "./assets/monster_normal.png" ? 1 : 5
     this.hit = false
     this.stop = false
-    this.moveSpeed = 8 + (Math.random() * 15);
+    this.moveSpeed = moveSpeed + (Math.random() * 15);
     this.hp = hp
 
     setInterval(() => { 
@@ -35,22 +35,22 @@ class Enemy extends GameObject {
 
         if ((distX < 35 && distX > -35) && (distY < 35 && distY > -35) && (!this.hit) && (!this.dead)) {
           if (this.hp <= 0 && !this.stop) {
-            this.kill()
-            shootBomb.kill(shootBomb)
+            this.die()
+            shootBomb.explode(shootBomb)
             pointUp(this.point, this.position.x, this.position.y)
             new Explosion(this.position.x, this.position.y).explode()
   
             incrementPoint(this.point);
           } else {
             this.reduceHP()
-            shootBomb.kill(shootBomb)
+            shootBomb.explode(shootBomb)
           }
         }
       })
     }
   }
 
-  kill () {
+  die () {
     this.dead = true
     this.hit = true
     enemies.splice(enemies.indexOf(this), 1)

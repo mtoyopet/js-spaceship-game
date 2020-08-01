@@ -1,27 +1,3 @@
-// メインループ
-function updateScreen() {
-  gameScreenCtx.fillStyle = "#0C2659"
-  gameScreenCtx.fillRect(0, 0, 440, 440)
-  
-  if (!gameStart && !gameOver) {
-    titleText.drawText()
-    toyomomoText.drawText()
-  }
-
-  if (gameStart && !gameOver) {
-    // オブジェクトの描画
-    drawGameObjects()
-    drawPointTextObjects()
-    sliceShotBombs()
-  }
-
-  if (gameStart && gameOver) {
-    // ゲームオーバー画面
-    gameOverText.drawText()
-    playAgainText.drawText()
-  }
-}
-
 function drawGameObjects() {
   gameObjects.forEach(object => {
     if (!object.dead) {
@@ -42,7 +18,7 @@ function drawPointTextObjects() {
 function sliceShotBombs() {
   shotBombs.forEach(shotBomb => {
     if (shotBomb.position.x >= 450) {
-      shotBomb.kill()
+      shotBomb.explode()
     }
   })
 }
@@ -75,6 +51,12 @@ function keyPressed(event){
       }
     }
   }
+}
+
+function drawMenuTexts() {
+  titleText.drawText()
+  toyomomoText.drawText()
+  startGameText.drawText()
 }
 
 function incrementPoint(num) {
